@@ -5,3 +5,5 @@ const api= axios.create(
         baseURL:'https://api-ecommerceg3.herokuapp.com/'
     }
 );
+
+export default api;
