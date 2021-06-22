@@ -2,15 +2,15 @@ import api from '../../Services/api'
 
 export default class CategoriaService {
 
-    getProductsSmall() {
+    getCategoriasSmall() {
         return api.get('/categoria').then(res => res.data);
     }
 
-    getProducts() {
+    getCategorias() {
         return api.get('/categoria').then(res => res.data);
     }
 
-    getProductsWithOrdersSmall() {
+    getCategoriasWithOrdersSmall() {
         return api.get('data/products-orders-small.json').then(res => res.data);
     }
 }
