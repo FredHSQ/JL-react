@@ -13,4 +13,25 @@ export default class CategoriaService {
     getCategoriasWithOrdersSmall() {
         return api.get('data/products-orders-small.json').then(res => res.data);
     }
+
+    // postCategoriasSmall(){
+    //     return api.post('./categoria', categoria).then(res => res.data)
+    // }
+
+    postCategorias(categoria){
+        return api.post('/categoria', categoria).then(res => res.data);
+    }
+
+    // postCategoriasWithOrderSmalll(){
+    //     return api.post('data/products-orders-small.json').then(res => res.data)
+    // }
+    
+    deleteCategorias(id){
+        return api.delete(`/categoria/${id}`).then(res => res.data)
+    }
+
+
+    putCategorias(categoria){
+        return api.put(`/categoria/${categoria.id}`, categoria).then(res => res.data)
+    }
 }

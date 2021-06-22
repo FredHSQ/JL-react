@@ -98,7 +98,7 @@ import 'primeicons/primeicons.css';
 const DataTableCrudDemo = () => {
 
     let emptyCategoria = {
-        id: null,
+        // id: null,
         nome: '',
         // image: null,
         descricao: '',
@@ -125,9 +125,9 @@ const DataTableCrudDemo = () => {
         categoriaService.getCategorias().then(data => setCategorias(data));
     }, []);
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    }
+    // const formatCurrency = (value) => {
+    //     return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    // }
 
     const openNew = () => {
         setCategoria(emptyCategoria);
@@ -158,12 +158,16 @@ const DataTableCrudDemo = () => {
                 const index = findIndexById(categoria.id);
 
                 _categorias[index] = _categoria;
+                console.log(_categoria);
+                categoriaService.putCategorias(_categoria)
                 toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Categoria Atualizada', life: 3000 });
             }
             else {
-                _categoria.id = createId();
+                // _categoria.id = createId();
                 // _product.image = 'product-placeholder.svg';
                 _categorias.push(_categoria);
+                categoriaService.postCategorias(_categoria);
+                console.log(JSON.stringify(_categoria));
                 toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Categoria Criada', life: 3000 });
             }
 
@@ -188,6 +192,7 @@ const DataTableCrudDemo = () => {
         setCategoria(_categorias);
         setDeleteCategoriaDialog(false);
         setCategoria(emptyCategoria);
+        categoriaService.deleteCategorias(categoria.id)
         toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Product Deletado', life: 3000 });
     }
 
@@ -221,12 +226,22 @@ const DataTableCrudDemo = () => {
     const confirmDeleteSelected = () => {
         setDeleteCategoriasDialog(true);
     }
-
+    
     const deleteSelectedCategorias = () => {
         let _categorias = categorias.filter(val => !selectedCategorias.includes(val));
         setCategorias(_categorias);
         setDeleteCategoriasDialog(false);
         setSelectedCategorias(null);
+
+        for(let i = selectedCategorias.length - 1; i>= 0; i--){ 
+            
+            let obj = selectedCategorias[i];
+            
+            console.log(obj.id);
+
+            categoriaService.deleteCategorias(obj.id);
+        }
+
         toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produtos Deletados', life: 3000 });
     }
 

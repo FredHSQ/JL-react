@@ -7,6 +7,7 @@ import Cliente from '../Cliente/Cliente';
 const Crud = () => (
   <div className={styles.Crud}>
     <Cliente/>
+    <Categoria/>
   </div>
 );
 
