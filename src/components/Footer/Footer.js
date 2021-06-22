@@ -5,7 +5,7 @@ import Logo from '../../Assets/liga.svg'
 
 const Footer = () => (
   <footer className={styles.Footer}>
-    <img src={Logo} alt="LogoFacebook" className={styles.mediaLogo} />
+    <img src={Logo} alt="Logo" className={styles.mediaLogo} />
   </footer>
 );
 
