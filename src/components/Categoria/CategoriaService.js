@@ -7,7 +7,7 @@ export default class CategoriaService {
     }
 
     getProducts() {
-        return axios.get('data/products.json').then(res => res.data.data);
+        return axios.get('/categoria').then(res => res.data.data);
     }
 
     getProductsWithOrdersSmall() {
