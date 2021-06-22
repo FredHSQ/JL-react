@@ -1,0 +1,42 @@
+.NavBar{
+    margin: 0;
+    padding: 0;
+}
+
+#navMobile {
+    display: none;
+}
+
+#navHeader li{
+    margin: auto;
+}
+
+#navHeader ul{
+    margin: auto;
+    display: flex;
+}
+
+#navHeader a{
+    font-size: 24px;
+    text-decoration: none; 
+    color: white;
+}
+
+#navHeader {
+    height: fit-content;
+    background: rgb(175,31,36);
+    width: 100%;
+    
+}
+
+.navButtons {
+    display: grid;
+    width: 25%;
+    text-align: center;
+}
+
+.navButtons:hover {
+    background: rgb(117, 10, 14);
+    display: grid;
+    grid-column: auto auto auto auto;
+}

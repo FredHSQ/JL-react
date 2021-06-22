@@ -1,8 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   return (
+    <>
+    <Header/>
+    <NavBar/>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -19,6 +24,7 @@ function App() {
         </a>
       </header>
     </div>
+    </>
   );
 }
 

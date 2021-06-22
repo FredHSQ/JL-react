@@ -1,1 +1,6 @@
-.Header {}
+.Header {
+    background-color: black;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}

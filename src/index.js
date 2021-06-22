@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Pagina404 from './components/Pagina404/Pagina404';
 
 ReactDOM.render(
   <BrowserRouter>

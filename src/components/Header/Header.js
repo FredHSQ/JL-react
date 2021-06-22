@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './Header.module.css';
+import Funko from '../../Assets/funko.png';
 
 const Header = () => (
-  <div className={styles.Header}>
-    Header Component
-  </div>
+  <header className={styles.Header}>
+    <img src={Funko} alt="funko" id="img-funko"></img>
+  </header>
 );
+
 
 export default Header;
