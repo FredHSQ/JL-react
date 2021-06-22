@@ -5,12 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Pagina404 from './components/Pagina404/Pagina404';
+import Login from './components/Login/Login';
+import Carrinho from './components/Carrinho/Carrinho';
+import Portal from './components/Portal/Portal';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/" exact={true} component={App} />
-
+      <Route path="/Login" component={Login} />
+      <Route path="/Carrinho" component={Carrinho} />
+      <Route path="/Portal" component={Portal} />
       <Route path='*' component={Pagina404} />
     </Switch>
   </BrowserRouter>,

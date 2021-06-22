@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavBar.module.css';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => (
   <nav id={styles.navHeader} className={styles.NavBar}>
     <ul>
       <li className={styles.navButtons}>
-        <a href="#">Inicio</a>
+        <Link to="/"><a>Inicio</a></Link>
       </li>
       <li className={styles.navButtons}>
-        <a href="#">Login</a>
+        <Link to="/Login"><a>Login</a></Link>
       </li>
       <li className={styles.navButtons}>
-        <a href="../Produtos/produtos.html">Portal Gerencial</a>
+        <Link to="/Portal"><a>Portal Gerencial</a></Link>
       </li>
       <li className={styles.navButtons}>
-        <a href="../Carrinho/carrinho.html">Carrinho</a>
+        <Link to="/Carrinho"><a>Carrinho</a></Link>
       </li>
     </ul>
   </nav>
