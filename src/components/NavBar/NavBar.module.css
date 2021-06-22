@@ -14,6 +14,8 @@
 #navHeader ul{
     margin: auto;
     display: flex;
+    align-content: center;
+    margin-left: -5%;
 }
 
 #navHeader a{
