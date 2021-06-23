@@ -10,9 +10,9 @@ export default class CategoriaService {
         return api.get('/categoria').then(res => res.data);
     }
 
-    getCategoriasWithOrdersSmall() {
-        return api.get('data/products-orders-small.json').then(res => res.data);
-    }
+    // getCategoriasWithOrdersSmall() {
+    //     return api.get('data/products-orders-small.json').then(res => res.data);
+    // }
 
     // postCategoriasSmall(){
     //     return api.post('./categoria', categoria).then(res => res.data)

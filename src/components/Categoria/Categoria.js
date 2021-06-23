@@ -193,7 +193,7 @@ const DataTableCrudDemo = () => {
         setDeleteCategoriaDialog(false);
         setCategoria(emptyCategoria);
         categoriaService.deleteCategorias(categoria.id)
-        toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Product Deletado', life: 3000 });
+        toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Categoria Deletada', life: 3000 });
     }
 
     const findIndexById = (id) => {
@@ -242,7 +242,7 @@ const DataTableCrudDemo = () => {
             categoriaService.deleteCategorias(obj.id);
         }
 
-        toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produtos Deletados', life: 3000 });
+        toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Categorias Deletadas', life: 3000 });
     }
 
     //Não vamos usar categoria
