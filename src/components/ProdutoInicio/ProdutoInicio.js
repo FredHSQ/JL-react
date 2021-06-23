@@ -9,6 +9,12 @@ import ProdutoInicioService from './ProdutoInicioService';
 import './DataScrollerDemo.css';
 import { DataScroller } from 'primereact/datascroller';
 
+const loadData = (event) => {
+  //event.first = First row offset
+  //event.rows = Number of rows per page
+  //add more records to the cars array
+}
+
 
 const ProdutoInicio = () => {
   const [produto, setProdutos] = useState([]);
@@ -38,7 +44,7 @@ const itemTemplate = (data) => {
 return (
     <div className="datascroller-demo">
         <div className="card">
-            <DataScroller value={produto} itemTemplate={itemTemplate} rows={5} inline scrollHeight="500px" header="Bem vindo ao Ecommerce Justice League" />
+            <DataScroller value={produto} itemTemplate={itemTemplate} rows={5} inline scrollHeight="500px" header="Bem vindo ao Ecommerce Justice League" lazy onLazyLoad={loadData}  />
         </div>
     </div>
 );
