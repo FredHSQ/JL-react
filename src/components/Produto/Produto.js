@@ -54,6 +54,7 @@ import { classNames } from 'primereact/utils';
 import React, { useEffect, useRef, useState } from 'react';
 import categoriaService from '../Categoria/CategoriaService';
 import ProdutoService from './ProdutoService';
+import funcionarioService from '../Funcionario/FuncionarioService';
 
 // import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 // import 'primereact/resources/themes/bootstrap4-light-blue/theme.css'
@@ -249,7 +250,17 @@ const Produto = () => {
   //Não vamos usar produto
   const onCategoriaChange = (e) => {
     let _produto = { ...produto };
-    _produto['nomeCategoria'] = e.value;
+    _produto['nomeCategoria'] = e.value.nome;
+    console.log(e.value.id);
+    _produto['idCategoria'] = e.value.id;
+    setProduto(_produto);
+  }
+
+  const onFuncionarioChange = (e) => {
+    let _produto = { ...produto };
+    _produto['nomeFuncionario'] = e.value.nome;
+    console.log(e.value.id);
+    _produto['idFuncionario'] = e.value.id;
     setProduto(_produto);
   }
 
@@ -362,8 +373,23 @@ const Produto = () => {
   const mapCategoria = categoria.map((col,i) =>{
     return (
     <div className="p-field-radiobutton p-col-6">
-      <RadioButton inputId={`categoria${i}`} name="categoria" value={col.nome} onChange={onCategoriaChange} checked={produto.nomeCategoria == col.nome} />
+      <RadioButton inputId={`categoria${i}`} name="categoria" value={col} onChange={onCategoriaChange} checked={produto.nomeCategoria == col.nome} />
       <label htmlFor={`categoria1${i}`}>{col.nome}</label>
+    </div>)
+  });
+
+  const funcionarioService1 = new funcionarioService();
+  const [funcionario, setFuncionario] = useState([]);
+
+  useEffect(() => {
+    funcionarioService1.getFuncionario().then(data => setFuncionario(data));
+  }, []);
+
+  const mapFuncionario = funcionario.map((col,i) =>{
+    return (
+    <div className="p-field-radiobutton p-col-6">
+      <RadioButton inputId={`funcionario${i}`} name="funcionario" value={col} onChange={onFuncionarioChange} checked={produto.nomeFuncionario == col.nome} />
+      <label htmlFor={`funcionario1${i}`}>{col.nome}</label>
     </div>)
   });
 
@@ -421,6 +447,27 @@ const Produto = () => {
           <div className="p-formgrid p-grid">
             <div className="p-field-radiobutton p-col-6" value={categoria}>
               {mapCategoria}  
+            </div>
+            {/* <div className="p-field-radiobutton p-col-6">
+                            <RadioButton inputId="category2" name="categoria" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
+                            <label htmlFor="category2">Clothing</label>
+                        </div>
+                        <div className="p-field-radiobutton p-col-6">
+                            <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={product.category === 'Electronics'} />
+                            <label htmlFor="category3">Electronics</label>
+                        </div>
+                        <div className="p-field-radiobutton p-col-6">
+                            <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={product.category === 'Fitness'} />
+                            <label htmlFor="category4">Fitness</label>
+                        </div> */}
+          </div>
+        </div>
+
+        <div className="p-field">
+          <label className="p-mb-3">Funcionario</label>
+          <div className="p-formgrid p-grid">
+            <div className="p-field-radiobutton p-col-6" value={funcionario}>
+              {mapFuncionario}  
             </div>
             {/* <div className="p-field-radiobutton p-col-6">
                             <RadioButton inputId="category2" name="categoria" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
