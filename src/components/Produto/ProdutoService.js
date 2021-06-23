@@ -1,4 +1,5 @@
 import api from '../../Services/api'
+import Produto from './Produto';
 
 export default class ProdutoService {
 
