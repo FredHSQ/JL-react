@@ -31,7 +31,7 @@ export default class ProdutoService {
     }
 
 
-    putProdutos(categoria){
-        return api.put(`/produto/${categoria.id}`, categoria).then(res => res.data)
+    putProdutos(produto){
+        return api.put(`/produto/${produto.id}`, produto).then(res => res.data)
     }
 }

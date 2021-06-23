@@ -249,7 +249,7 @@ const Produto = () => {
   //Não vamos usar produto
   const onCategoriaChange = (e) => {
     let _produto = { ...produto };
-    _produto['categoria'] = e.value;
+    _produto['nomeCategoria'] = e.value;
     setProduto(_produto);
   }
 
@@ -352,28 +352,20 @@ const Produto = () => {
     return new Date(rawData.dataFabricacao).toLocaleDateString([], { year: 'numeric', month: 'numeric', day: 'numeric' });
   }
 
-  const CategoriaMarcador = () => {
-    const categoriaService1 = new categoriaService();
-    const [categoria, setCategoria] = useState(null);
+  const categoriaService1 = new categoriaService();
+  const [categoria, setCategoria] = useState([]);
 
-    useEffect(() => {
-      categoriaService1.getCategorias().then(data => setCategoria(data));
-    }, []);
-    if (categoria != null) {
-      console.log(categoria);
-          const mapCategoria = this.categoria.map((col,i) =>{
-            return (<div className="p-field-radiobutton p-col-6">
-              <RadioButton inputId="categoria1" name="categoria" value={col.nome} onChange={onCategoriaChange} checked={produto.nomeCategoria === 'Accessories'} />
-              <label htmlFor="categoria1">{col.nome}</label>
-            </div>)
-          });
-      return <div>
-          {mapCategoria}
-      </div>
-    };
+  useEffect(() => {
+    categoriaService1.getCategorias().then(data => setCategoria(data));
+  }, []);
 
-    return <div>Categorias Carregando</div>;
-  }
+  const mapCategoria = categoria.map((col,i) =>{
+    return (
+    <div className="p-field-radiobutton p-col-6">
+      <RadioButton inputId={`categoria${i}`} name="categoria" value={col.nome} onChange={onCategoriaChange} checked={produto.nomeCategoria == col.nome} />
+      <label htmlFor={`categoria1${i}`}>{col.nome}</label>
+    </div>)
+  });
 
   return (
     // <div className={DataTableDemo}>
@@ -427,11 +419,9 @@ const Produto = () => {
         <div className="p-field">
           <label className="p-mb-3">Categoria</label>
           <div className="p-formgrid p-grid">
-            <div className="p-field-radiobutton p-col-6">
-              <RadioButton inputId="categoria1" name="categoria" value="Accessories" onChange={onCategoriaChange} checked={produto.nomeCategoria === 'Accessories'} />
-              <label htmlFor="categoria1">Accessories</label>
+            <div className="p-field-radiobutton p-col-6" value={categoria}>
+              {mapCategoria}  
             </div>
-            <CategoriaMarcador />
             {/* <div className="p-field-radiobutton p-col-6">
                             <RadioButton inputId="category2" name="categoria" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
                             <label htmlFor="category2">Clothing</label>
