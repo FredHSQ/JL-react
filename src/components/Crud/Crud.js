@@ -4,12 +4,14 @@ import styles from './Crud.module.css';
 import Categoria from '../Categoria/Categoria'
 import Cliente from '../Cliente/Cliente';
 import Funcionario from '../Funcionario/Funcionario'
+import Produto from '../Produto/Produto'
 
 const Crud = () => (
   <div className={styles.Crud}>
     <Cliente/>
     <Categoria/>
     <Funcionario/>
+    <Produto/>
   </div>
 );
 

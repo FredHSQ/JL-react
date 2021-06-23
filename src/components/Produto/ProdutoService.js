@@ -1,0 +1,37 @@
+import api from '../../Services/api'
+
+export default class ProdutoService {
+
+    getProdutosSmall() {
+        return api.get('/produto').then(res => res.data);
+    }
+
+    getProdutos() {
+        return api.get('/produto').then(res => res.data);
+    }
+
+    getProdutosWithOrdersSmall() {
+        return api.get('data/produto-orders-small.json').then(res => res.data);
+    }
+
+    // postCategoriasSmall(){
+    //     return api.post('./categoria', categoria).then(res => res.data)
+    // }
+
+    postProdutos(produto){
+        return api.post('/produto', produto).then(res => res.data);
+    }
+
+    // postCategoriasWithOrderSmalll(){
+    //     return api.post('data/products-orders-small.json').then(res => res.data)
+    // }
+    
+    deleteProdutos(id){
+        return api.delete(`/produto/${id}`).then(res => res.data)
+    }
+
+
+    putProdutos(categoria){
+        return api.put(`/produto/${categoria.id}`, categoria).then(res => res.data)
+    }
+}
