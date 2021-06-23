@@ -55,6 +55,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import categoriaService from '../Categoria/CategoriaService';
 import ProdutoService from './ProdutoService';
 import funcionarioService from '../Funcionario/FuncionarioService';
+import { Calendar } from 'primereact/calendar';
 
 // import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 // import 'primereact/resources/themes/bootstrap4-light-blue/theme.css'
@@ -272,6 +273,16 @@ const Produto = () => {
     setProduto(_produto);
   }
 
+  const onInputChangeData = (e, nome) => {
+    const val = (e.target && e.target.value) || '';
+    const data = dataTemplate(val);
+    console.log(Date.parse(data));
+    let _produto = { ...produto };
+    _produto[`${nome}`] = data;
+
+    setProduto(_produto);
+  }
+
   const onInputNumberChange = (e, nome) => {
     const val = e.value || 0;
     let _produto = { ...produto };
@@ -438,6 +449,10 @@ const Produto = () => {
         <div className="p-field">
           <label htmlFor="descricao">Descrição</label>
           <InputTextarea id="descricao" value={produto.descricao} onChange={(e) => onInputChange(e, 'descricao')} required rows={3} cols={20} />
+        </div>
+        <div className="p-field">
+          <label htmlFor="dataFabricacao">Data de Fabricação</label>
+          <Calendar id="dataFabricacao" value={produto.dataFabricacao} onChange={(e) => onInputChangeData(e, 'dataFabricacao')}></Calendar>
         </div>
 
 
