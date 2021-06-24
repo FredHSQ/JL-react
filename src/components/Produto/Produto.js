@@ -161,7 +161,7 @@ const Produto = () => {
         const index = findIndexById(produto.id);
 
         _produtos[index] = _produto;
-        console.log(_produto);
+        console.log(_produto.dataFabricacao);
         produtoService.putProdutos(_produto)
         toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produto Atualizada', life: 3000 });
       }
@@ -275,10 +275,8 @@ const Produto = () => {
 
   const onInputChangeData = (e, nome) => {
     const val = (e.target && e.target.value) || '';
-    const data = dataTemplate(val);
-    console.log(Date.parse(data));
     let _produto = { ...produto };
-    _produto[`${nome}`] = data;
+    _produto[`${nome}`] = val;
 
     setProduto(_produto);
   }
@@ -452,7 +450,7 @@ const Produto = () => {
         </div>
         <div className="p-field">
           <label htmlFor="dataFabricacao">Data de Fabricação</label>
-          <Calendar id="dataFabricacao" value={produto.dataFabricacao} onChange={(e) => onInputChangeData(e, 'dataFabricacao')}></Calendar>
+          <Calendar id="dataFabricacao" value={produto.dataFabricacao} timezone="utc" onChange={(e) => onInputChangeData(e, 'dataFabricacao')} />
         </div>
 
 

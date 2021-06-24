@@ -65,7 +65,12 @@ const DataTableCrudDemo = () => {
         cpf: '',
         email: '',
         dataNascimento: '',
-        endereco: ''
+        endereco:{
+           rua:'ahhaha',
+           estado:'rj',
+            cidade:'wdadwad',
+        },
+        usuario:'dwadawdwadwa'
     };
 
     const [clientes, setClientes] = useState(null);
@@ -231,13 +236,31 @@ const DataTableCrudDemo = () => {
         setCliente(_cliente);
     }
 
-    const onInputNumberChange = (e, nome) => {
-        const val = e.value || 0;
-        let _cliente = {...cliente};
+    const onInputChangeData = (e, nome) => {
+        const val = (e.target && e.target.value) || '';
+        let _cliente = { ...cliente };
         _cliente[`${nome}`] = val;
+    
+        setCliente(_cliente);
+      }
 
+    const onInputAdressChange = (e, nome) => {
+        const val = (e.target.value);
+        let _cliente = {...cliente};
+        _cliente.endereco[`${nome}`] = val;
+
+        console.log(val);
+        console.log(_cliente.endereco[`${nome}`]);
+        console.log(nome);
         setCliente(_cliente);
     }
+
+    const onFuncionarioChange = (e) => {
+        let _cliente = { ...cliente };
+        _cliente['cep'] = e.value.endereco.cep;
+        console.log(e.value.endereco.cep);
+        setCliente(_cliente);
+      }
 
     const leftToolbarTemplate = () => {
         return (
@@ -339,9 +362,9 @@ const DataTableCrudDemo = () => {
                     <Column field="cpf" header="CPF" body={cpfTemplate} sortable></Column>
                     <Column field="email" header="E-mail" sortable></Column>
                     <Column field="dataNascimento" header="Data de nascimento" body={dataTemplate} sortable></Column>
-                    <Column field="endereco.cep" header="CEP" body={cepTemplate} sortable></Column>
-                    <Column field="endereco.numero" header="Número" sortable></Column>
-                    <Column field="endereco.complemento" header="Complemento" sortable></Column>
+                    <Column field="cliente.endereco.cep" header="CEP" body={cepTemplate} sortable></Column>
+                    <Column field="cliente.endereco.numero" header="Número" sortable></Column>
+                    <Column field="cliente.endereco.complemento" header="Complemento" sortable></Column>
                     <Column body={actionBodyTemplate}></Column>
                 </DataTable>
             </div>
@@ -363,19 +386,19 @@ const DataTableCrudDemo = () => {
                 </div>
                 <div className="p-field">
                     <label htmlFor="dataNascimento">Data de Nascimento</label>
-                    <InputText id="dataNascimento" value={cliente.dataNascimento} onChange={(e) => onInputChange(e, 'dataNascimento')} required rows={3} cols={20} />
+                    <Calendar id="dataNascimento" value={cliente.dataNascimento} timezone="utc" onChange={(e) => onInputChangeData(e, 'dataNascimento')} />
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.cep">CEP</label>
-                    <InputNumber id="endereco.cep" value={cliente.endereco.cep} onChange={(e) => onInputChange(e, 'endereco.cep')} required rows={3} cols={20} />
+                    <InputText id="endereco.cep" value={cliente.cep} onChange={(e) => onInputAdressChange(e, 'cep')} required rows={3} cols={20} />
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.numero">Número</label>
-                    <InputText id="endereco.numero" value={cliente.endereco.numero} onChange={(e) => onInputChange(e, 'endereco.numero')} required rows={3} cols={20} />
+                    <InputText id="endereco.numero" value={cliente.numero} onChange={(e) => onInputAdressChange(e, 'numero')} required rows={3} cols={20} />
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.complemento">Complemento</label>
-                    <InputText id="endereco.complemento" value={cliente.endereco.complemento} onChange={(e) => onInputChange(e, 'endereco.complemento')} required rows={3} cols={20} />
+                    <InputText id="endereco.complemento" value={cliente.complemento} onChange={(e) => onInputAdressChange(e, 'complemento')} required rows={3} cols={20} />
                 </div>
 
 
