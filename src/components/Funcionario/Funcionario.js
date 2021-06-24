@@ -344,7 +344,7 @@ const Funcionario = () => {
                 <Toolbar className="p-mb-4" left={leftToolbarTemplate} ></Toolbar>
                 {/* <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar> */}
 
-                <DataTable value={funcionarios} selection={selectedFuncionarios} onSelectionChange={(e) => setSelectedFuncionarios(e.value)}
+                <DataTable value={funcionarios} showGridlines autoLayout stripedRows selection={selectedFuncionarios} onSelectionChange={(e) => setSelectedFuncionarios(e.value)}
                 // <DataTable ref={dt} value={funcionarios} selection={selectedFuncionarios} onSelectionChange={(e) => setSelectedFuncionarios(e.value)}
                     dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
