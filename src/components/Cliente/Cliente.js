@@ -93,7 +93,9 @@ const DataTableCrudDemo = () => {
             else {
 
                 const response = await clienteService.postClientes(_cliente);
+
                 _clientes.push(response);
+
                 toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Cliente Criada', life: 3000 });
             }
 
@@ -108,10 +110,10 @@ const DataTableCrudDemo = () => {
         setClienteDialog(true);
     }
 
-    const confirmDeleteCliente = (cliente) => {
-        setCliente(cliente);
-        setDeleteClienteDialog(true);
-    }
+    // const confirmDeleteCliente = (cliente) => {
+    //     setCliente(cliente);
+    //     setDeleteClienteDialog(true);
+    // }
 
     const deleteCliente = () => {
         let _clientes = clientes.filter(val => val.id !== cliente.id);
@@ -176,11 +178,6 @@ const DataTableCrudDemo = () => {
         setCliente(_cliente);
     }
 
-    const onFuncionarioChange = (e) => {
-        let _cliente = { ...cliente };
-        _cliente['cep'] = e.value.endereco.cep;
-        setCliente(_cliente);
-      }
 
     const leftToolbarTemplate = () => {
         return (
