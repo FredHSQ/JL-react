@@ -27,7 +27,7 @@ const ProdutoInicio = () => {
 const itemTemplate = (data) => {
     return (
         <div className="product-item">
-            <img src={`${data.fotoLink}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={data.nome} />
+            <img src={`${data.fotoLink}`} onError={(e) => e.target.src='https://cdn0.iconfinder.com/data/icons/geek-4/24/Justice_League_dc_comic_logo_movie_-512.png'} alt={data.nome} />
             <div className="product-detail">
                 <div className="product-name">{data.nome}</div>
                 <div className="product-description">{data.descricao}</div>
@@ -44,7 +44,7 @@ const itemTemplate = (data) => {
 return (
     <div className="datascroller-demo">
         <div className="card">
-            <DataScroller value={produto} itemTemplate={itemTemplate} rows={5} inline scrollHeight="500px" header="Bem vindo ao Ecommerce Justice League" lazy onLazyLoad={loadData}  />
+            <DataScroller value={produto} itemTemplate={itemTemplate} rows={5} inline scrollHeight="500px" lazy onLazyLoad={loadData}  />
         </div>
     </div>
 );
