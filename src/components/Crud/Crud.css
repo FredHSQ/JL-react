@@ -1,0 +1,56 @@
+.Crud {
+    background-color: #e5e5e5;
+    padding: 3%;
+}
+
+.Button{
+    width: 15%;
+
+    margin-right: 2px;
+    border:0;
+
+    cursor: pointer;
+
+    background: #515151;
+    color: #e5e5e5;
+
+    transition: 0.2s;
+}
+
+.Button:hover {
+    filter: brightness(0.9);    
+}
+
+.wrapper {
+    width: 100%;
+  }
+  
+  .tabs {
+    display: flex;
+    bottom: 0;
+  }
+  
+  .tabitem {
+    border-right: 2px solid #fff;
+    cursor: pointer;
+    width: 15%;
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .tabitem--inactive {
+    background-color: #515151;
+  }
+  
+  .tabitem__title {
+    color: black;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .content {
+    text-align: center; 
+    font-size: 22px;
+  }
