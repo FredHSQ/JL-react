@@ -5,7 +5,7 @@
 }
 
 .content {
-  /* background: gray; */
+  background: gray;
   border: 1px solid;
   height: 500px;
   padding: 50px;
@@ -16,7 +16,7 @@
   border-radius: 20px;
 
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 
@@ -33,7 +33,7 @@
 
   margin-top: 0;
   margin-bottom: 30px;
-  /* height: 30px; */
+  height: 30px;
 }
 
 .modal-header img {
