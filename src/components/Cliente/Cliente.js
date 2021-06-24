@@ -66,11 +66,11 @@ const DataTableCrudDemo = () => {
         email: '',
         dataNascimento: '',
         endereco:{
-           rua:'ahhaha',
-           estado:'rj',
-            cidade:'wdadwad',
+           rua:'',
+           estado:'',
+            cidade:'',
         },
-        usuario:'dwadawdwadwa'
+        usuario:''
     };
 
     const [clientes, setClientes] = useState(null);
@@ -359,12 +359,13 @@ const DataTableCrudDemo = () => {
                     <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
                     <Column field="id" header="Código" sortable></Column>
                     <Column field="nome" header="Nome" sortable></Column>
+                    <Column field="usuario" header="Usuário" sortable></Column>
                     <Column field="cpf" header="CPF" body={cpfTemplate} sortable></Column>
                     <Column field="email" header="E-mail" sortable></Column>
                     <Column field="dataNascimento" header="Data de nascimento" body={dataTemplate} sortable></Column>
                     <Column field="cliente.endereco.cep" header="CEP" body={cepTemplate} sortable></Column>
-                    <Column field="cliente.endereco.numero" header="Número" sortable></Column>
-                    <Column field="cliente.endereco.complemento" header="Complemento" sortable></Column>
+                    <Column field="endereco.cidade" header="Cidade" sortable></Column>
+                    <Column field="endereco.estado" header="Estado" sortable></Column>
                     <Column body={actionBodyTemplate}></Column>
                 </DataTable>
             </div>
@@ -375,6 +376,11 @@ const DataTableCrudDemo = () => {
                     <label htmlFor="nome">Nome</label>
                     <InputText id="nome" value={cliente.nome} onChange={(e) => onInputChange(e, 'nome')} required autoFocus className={classNames({ 'p-invalid': submitted && !cliente.nome })} />
                     {submitted && !cliente.nome && <small className="p-error">Nome é obrigatório.</small>}
+                </div>
+                <div className="p-field">
+                    <label htmlFor="usuario">Usuário</label>
+                    <InputText id="usuario" value={cliente.usuario} onChange={(e) => onInputChange(e, 'usuario')} required autoFocus className={classNames({ 'p-invalid': submitted && !cliente.nome })} />
+                    {submitted && !cliente.nome && <small className="p-error">Usuário é obrigatório.</small>}
                 </div>
                 <div className="p-field">
                     <label htmlFor="cpf">CPF</label>
@@ -390,15 +396,27 @@ const DataTableCrudDemo = () => {
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.cep">CEP</label>
-                    <InputText id="endereco.cep" value={cliente.cep} onChange={(e) => onInputAdressChange(e, 'cep')} required rows={3} cols={20} />
+                    <InputText id="endereco.cep" value={cliente.endereco.cep} onChange={(e) => onInputAdressChange(e, 'cep')} required rows={3} cols={20} />
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.numero">Número</label>
-                    <InputText id="endereco.numero" value={cliente.numero} onChange={(e) => onInputAdressChange(e, 'numero')} required rows={3} cols={20} />
+                    <InputText id="endereco.numero" value={cliente.endereco.numero} onChange={(e) => onInputAdressChange(e, 'numero')} required rows={3} cols={20} />
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.complemento">Complemento</label>
-                    <InputText id="endereco.complemento" value={cliente.complemento} onChange={(e) => onInputAdressChange(e, 'complemento')} required rows={3} cols={20} />
+                    <InputText id="endereco.complemento" value={cliente.endereco.complemento} onChange={(e) => onInputAdressChange(e, 'complemento')} required rows={3} cols={20} />
+                </div>
+                <div className="p-field">
+                    <label htmlFor="endereco.rua">Rua</label>
+                    <InputText id="endereco.rua" value={cliente.endereco.rua} onChange={(e) => onInputAdressChange(e, 'rua')} required rows={3} cols={20} />
+                </div>
+                <div className="p-field">
+                    <label htmlFor="endereco.cidade">Cidade</label>
+                    <InputText id="endereco.cidade" value={cliente.endereco.cidade} onChange={(e) => onInputAdressChange(e, 'cidade')} required rows={3} cols={20} />
+                </div>
+                <div className="p-field">
+                    <label htmlFor="endereco.estado">Estado</label>
+                    <InputText id="endereco.estado" value={cliente.endereco.estado} onChange={(e) => onInputAdressChange(e, 'estado')} required rows={3} cols={20} />
                 </div>
 
 
