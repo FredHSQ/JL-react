@@ -6,6 +6,7 @@ import LogoFooter from "../../Assets/logo-footer.png";
 import FuncionarioService from "../Funcionario/FuncionarioService";
 import React, { useState, useEffect} from 'react';
 
+
 var emptyFuncionario = {
   nome: '',
   cpf: '',
@@ -67,7 +68,7 @@ const Login = () => {
 
             <input className="input-user" type="text" placeholder="Nome" onChange={(e) => onInputChangeNome(e, 'nome')}/>
             <input className="input-user" type="text" placeholder="Cpf" onChange={(e) => onInputChangeCPF(e, 'cpf')}/>
-            <button onClick={authToken} >Logar</button> 
+            <a onClick={authToken} href='/Portal' >Logar</a> 
 
           <p>É novo por aqui? clique aqui e cadastre-se</p>
         </div>
