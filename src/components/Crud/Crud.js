@@ -44,7 +44,7 @@ const Crud = () => {
          />
       )}
       </div>
-      <div className="content">
+      <div className="contentC">
         {tabItems.map(({ id, content }) => {
           return active === id ? content : ''
         })}
