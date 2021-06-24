@@ -1,5 +1,3 @@
-
-
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import 'primereact/resources/primereact.min.css';
@@ -42,9 +40,11 @@ const itemTemplate = (data) => {
 }
 
 return (
-    <div className="datascroller-demo">
-        <div className="card">
-            <DataScroller value={produto} itemTemplate={itemTemplate} rows={5} inline scrollHeight="500px" lazy onLazyLoad={loadData}  />
+    <div className="ProdutoInicio">
+        <div className="datascroller-demo">
+            <div className="card">
+                <DataScroller value={produto} itemTemplate={itemTemplate} rows={5} inline scrollHeight="500px" lazy onLazyLoad={loadData}  />
+            </div>
         </div>
     </div>
 );
