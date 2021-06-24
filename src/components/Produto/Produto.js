@@ -95,7 +95,6 @@ const Produto = () => {
         const response = await produtoService.postProdutos(_produto);
         console.log(_produto);
         console.log(response);
-        // window.location.reload();
         _produtos.push(response);
 
         toast.current.show({
