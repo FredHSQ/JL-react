@@ -4,7 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import LogoFooter from "../../Assets/logo-footer.png";
 import FuncionarioService from "../Funcionario/FuncionarioService";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 
 var emptyFuncionario = {
   nome: '',
@@ -24,13 +24,15 @@ const Login = () => {
 
   const authToken = () =>{
     console.log("Entrou authToken");
+    console.log(emptyFuncionario.nome);
+    console.log(emptyFuncionario.cpf);
     funcionario.map((func) => {
       console.log("Entrou map");
       if(emptyFuncionario.nome === func.nome){
         console.log("Entrou if nome");
         if(emptyFuncionario.cpf === func.cpf){
           console.log("Entrou if cpf");
-          return <h1>Sucesso!</h1>
+          return localStorage.setItem('TOKEN',emptyFuncionario.cpf);
         }else{
           return <h1>Usuário/Senha incorreto.</h1>
         }
@@ -44,14 +46,12 @@ const Login = () => {
     const val = (e.target && e.target.value) || '';
     emptyFuncionario.cpf = val;
     console.log(emptyFuncionario);
-    setFuncionario(emptyFuncionario);
   }
 
   const onInputChangeNome = (e, nome) => {
     const val = (e.target && e.target.value) || '';
     emptyFuncionario.nome = val;
     console.log(emptyFuncionario);
-    setFuncionario(emptyFuncionario);
   }
 
   return (
