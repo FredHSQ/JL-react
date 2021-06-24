@@ -196,7 +196,7 @@ const Produto = () => {
     setDeleteProdutoDialog(false);
     setProduto(emptyProduto);
     produtoService.deleteProdutos(produto.id)
-    toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produto Deletado', life: 3000 });
+    toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produto Deletado', life: 3000});
   }
 
   const findIndexById = (id) => {
@@ -294,6 +294,7 @@ const Produto = () => {
   const leftToolbarTemplate = () => {
     return (
       <React.Fragment>
+        <Toast ref={toast}/>
         <Button label="Novo" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
         <Button label="Deletar" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedProdutos || !selectedProdutos.length} />
       </React.Fragment>
@@ -407,13 +408,12 @@ const Produto = () => {
   return (
     // <div className={DataTableDemo}>
     <div className="datatable-crud-demo">
-      <Toast ref={toast} />
 
       <div className="card">
         <Toolbar className="p-mb-4" left={leftToolbarTemplate} ></Toolbar>
         {/* <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar> */}
 
-        <DataTable value={produtos} selection={selectedProdutos} onSelectionChange={(e) => setSelectedProdutos(e.value)}
+        <DataTable value={produtos} showGridlines autoLayout stripedRows selection={selectedProdutos} onSelectionChange={(e) => setSelectedProdutos(e.value)}
           // <DataTable ref={dt} value={produtos} selection={selectedProdutos} onSelectionChange={(e) => setSelectedProdutos(e.value)}
           dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
