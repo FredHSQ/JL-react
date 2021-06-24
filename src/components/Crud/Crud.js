@@ -33,7 +33,7 @@ const tabItems = [
 ];
 
 const Crud = () => {
- const [active, setActive] = useState(0);
+ const [active, setActive] = useState(1);
   
   return (
   <div className='Crud'>
@@ -64,7 +64,7 @@ const TabItemComponent = ({
 }) => {
   return (
     <div className={isActive ? 'tabitem' : 'tabitem tabitem--inactive'} onClick={onItemClicked}>
-      <p className="tabitem__title">{title}</p>
+      <p className={isActive ? "tabitem__title" : "tabitem__title tabitem--inactive__title"}>{title}</p>
     </div>
   )
 };
