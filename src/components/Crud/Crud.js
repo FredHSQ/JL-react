@@ -3,8 +3,6 @@ import Categoria from '../Categoria/Categoria'
 import Cliente from '../Cliente/Cliente';
 import Funcionario from '../Funcionario/Funcionario'
 import Produto from '../Produto/Produto'
-import { useHistory } from 'react-router-dom'
-
 import './Crud.css';
 
 const { useState } = React;
@@ -12,8 +10,8 @@ const { useState } = React;
 const tabItems = [
   {
     id: 1,
-    title: 'Cliente',
-    content: <Cliente/>,
+    title: 'Produto',
+    content: <Produto/>,
   },
   {
     id: 2,
@@ -27,14 +25,13 @@ const tabItems = [
   },
   {
     id: 4,
-    title: 'Produto',
-    content: <Produto/>,
+    title: 'Cliente',
+    content: <Cliente/>,
   },
 ];
 
 const Crud = () => {
- const [active, setActive] = useState(1);
-  
+  const [active, setActive] = useState(1);
   return (
   <div className='Crud'>
     <div className="wrapper">
@@ -42,7 +39,7 @@ const Crud = () => {
         {tabItems.map(({ id, title }) =><TabItemComponent
            key={title}
            title={title}
-           onItemClicked={() => setActive(id)}
+           onItemClicked={() => setActive(id) }
            isActive={active === id}
          />
       )}
@@ -64,7 +61,7 @@ const TabItemComponent = ({
 }) => {
   return (
     <div className={isActive ? 'tabitem' : 'tabitem tabitem--inactive'} onClick={onItemClicked}>
-      <p className={isActive ? "tabitem__title" : "tabitem__title tabitem--inactive__title"}>{title}</p>
+      <p className="tabitem__title">{title}</p>
     </div>
   )
 };
