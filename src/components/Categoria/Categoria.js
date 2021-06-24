@@ -67,7 +67,6 @@ const DataTableCrudDemo = () => {
                 const index = findIndexById(categoria.id);
 
                 _categorias[index] = _categoria;
-                console.log(_categoria);
                 categoriaService.putCategorias(_categoria)
                 toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Categoria Atualizada', life: 3000 });
             }
@@ -77,7 +76,6 @@ const DataTableCrudDemo = () => {
                 
                 _categorias.push(response);
 
-                console.log(JSON.stringify(_categoria));
                 toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Categoria Criada', life: 3000 });
             }
 
@@ -133,8 +131,6 @@ const DataTableCrudDemo = () => {
             
             let obj = selectedCategorias[i];
             
-            console.log(obj.id);
-
             categoriaService.deleteCategorias(obj.id);
         }
 

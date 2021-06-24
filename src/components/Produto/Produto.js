@@ -1,42 +1,3 @@
-// import ProdutoService from './ProdutoService';
-// import styles from './Produto.module.css';
-// import ProdutoService from './ProdutoService';
-// import { useEffect, useState } from 'react';
-// import { DataTable } from 'primereact/datatable';
-// import { Column } from 'primereact/column';
-
-
-// const Produto = () => {
-//     const [produto, setProduto] = useState([]);
-//     const produtoService = new ProdutoService();
-
-//     const columns = [
-//         {field: 'id', header: 'Código'},
-//         {field: 'nome', header: 'Nome'},
-//         {field: 'descricao', header: 'Descrição'},
-//     ];
-
-//     useEffect(() => {
-//         produtoService.getProdutos().then(data => setProduto(data));
-//     }, []);
-
-//     const dynamicColumns = columns.map((col,i) => {
-//         return <Column key={col.field} field={col.field} header={col.header} />;
-//     });
-
-//     return ( 
-//     <div>
-//         <div className="card">
-//             <DataTable value={produto}>
-//                 {dynamicColumns}
-//             </DataTable>
-//         </div>
-//     </div> 
-//     );
-// }
-
-// export default Produto;
-
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
@@ -57,49 +18,11 @@ import ProdutoService from './ProdutoService';
 import funcionarioService from '../Funcionario/FuncionarioService';
 import { Calendar } from 'primereact/calendar';
 
-// import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
-// import 'primereact/resources/themes/bootstrap4-light-blue/theme.css'
-// import 'primereact/resources/themes/bootstrap4-light-purple/theme.css'
-// import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
-// import 'primereact/resources/themes/bootstrap4-dark-purple/theme.css'
-// import 'primereact/resources/themes/md-light-indigo/theme.css'
-// import 'primereact/resources/themes/md-light-deeppurple/theme.css'
-// import 'primereact/resources/themes/md-dark-indigo/theme.css'
-// import 'primereact/resources/themes/md-dark-deeppurple/theme.css'
-// import 'primereact/resources/themes/mdc-light-indigo/theme.css'
-// import 'primereact/resources/themes/mdc-light-deeppurple/theme.css'
-// import 'primereact/resources/themes/mdc-dark-indigo/theme.css'
-// import 'primereact/resources/themes/mdc-dark-deeppurple/theme.css'
-// import 'primereact/resources/themes/fluent-light/theme.css'
-// import 'primereact/resources/themes/saga-blue/theme.css'
-// import 'primereact/resources/themes/saga-green/theme.css'
-// import 'primereact/resources/themes/saga-orange/theme.css'
-// import 'primereact/resources/themes/saga-purple/theme.css'
-// import 'primereact/resources/themes/vela-blue/theme.css'
-// import 'primereact/resources/themes/vela-green/theme.css'
-// import 'primereact/resources/themes/vela-orange/theme.css'
-// import 'primereact/resources/themes/vela-purple/theme.css'
-// import 'primereact/resources/themes/arya-blue/theme.css'
-// import 'primereact/resources/themes/arya-green/theme.css'
-// import 'primereact/resources/themes/arya-orange/theme.css'
-// import 'primereact/resources/themes/arya-purple/theme.css'
-// import 'primereact/resources/themes/nova/theme.css'
-// import 'primereact/resources/themes/nova-alt/theme.css'
-// import 'primereact/resources/themes/nova-accent/theme.css'
-// import 'primereact/resources/themes/luna-amber/theme.css'
-// import 'primereact/resources/themes/luna-blue/theme.css'
-// import 'primereact/resources/themes/luna-green/theme.css'
-// import 'primereact/resources/themes/luna-pink/theme.css'
-// import 'primereact/resources/themes/rhea/theme.css'
-
-
 
 const Produto = () => {
 
   let emptyProduto = {
-    // id: null,
     nome: '',
-    // image: null,
     descricao: '',
     qtdEstoque: 0,
     valor: 0,
@@ -108,8 +31,6 @@ const Produto = () => {
     idFuncionario: '',
     nomeFuncionario: '',
     dataFabricacao: ''
-    // rating: 0,
-    // inventoryStatus: 'INSTOCK'
   };
 
   const [produtos, setProdutos] = useState(null);
@@ -121,7 +42,6 @@ const Produto = () => {
   const [submitted, setSubmitted] = useState(false);
   const [globalFilter, setGlobalFilter] = useState(null);
   const toast = useRef(null);
-  // const dt = useRef(null); //exportar csv
   const produtoService = new ProdutoService();
 
   useEffect(() => {
@@ -151,7 +71,7 @@ const Produto = () => {
     setDeleteProdutosDialog(false);
   }
 
-  const saveProduto = () => {
+  const saveProduto = async () => {
     setSubmitted(true);
 
     if (produto.nome.trim()) {
@@ -161,16 +81,12 @@ const Produto = () => {
         const index = findIndexById(produto.id);
 
         _produtos[index] = _produto;
-        console.log(_produto.dataFabricacao);
         produtoService.putProdutos(_produto)
         toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produto Atualizada', life: 3000 });
       }
       else {
-        // _produto.id = createId();
-        // _product.image = 'product-placeholder.svg';
-        _produtos.push(_produto);
-        produtoService.postProdutos(_produto);
-        console.log(JSON.stringify(_produto));
+        const response = await produtoService.postProdutos(_produto);
+        _produtos.push(response);
         toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Produto Criada', life: 3000 });
       }
 
@@ -185,10 +101,10 @@ const Produto = () => {
     setProdutoDialog(true);
   }
 
-  const confirmDeleteProduto = (produto) => {
-    setProduto(produto);
-    setDeleteProdutoDialog(true);
-  }
+  // const confirmDeleteProduto = (produto) => {
+  //   setProduto(produto);
+  //   setDeleteProdutoDialog(true);
+  // }
 
   const deleteProduto = () => {
     let _produtos = produtos.filter(val => val.id !== produto.id);
@@ -211,21 +127,6 @@ const Produto = () => {
     return index;
   }
 
-  //VEFIRICAR
-  const createId = () => {
-    let id = '';
-    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return id;
-  }
-
-  //exportar
-  // const exportCSV = () => {
-  //     dt.current.exportCSV();
-  // }
-
   const confirmDeleteSelected = () => {
     setDeleteProdutosDialog(true);
   }
@@ -240,8 +141,6 @@ const Produto = () => {
 
       let obj = selectedProdutos[i];
 
-      console.log(obj.id);
-
       produtoService.deleteProdutos(obj.id);
     }
 
@@ -252,7 +151,6 @@ const Produto = () => {
   const onCategoriaChange = (e) => {
     let _produto = { ...produto };
     _produto['nomeCategoria'] = e.value.nome;
-    console.log(e.value.id);
     _produto['idCategoria'] = e.value.id;
     setProduto(_produto);
   }
@@ -260,7 +158,6 @@ const Produto = () => {
   const onFuncionarioChange = (e) => {
     let _produto = { ...produto };
     _produto['nomeFuncionario'] = e.value.nome;
-    console.log(e.value.id);
     _produto['idFuncionario'] = e.value.id;
     setProduto(_produto);
   }
@@ -299,41 +196,16 @@ const Produto = () => {
     )
   }
 
-  //Export, Import
-  // const rightToolbarTemplate = () => {
-  //     return (
-  //         <React.Fragment>
-  //             <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} label="Import" chooseLabel="Import" className="p-mr-2 p-d-inline-block" />
-  //             <Button label="Export" icon="pi pi-upload" className="p-button-help" onClick={exportCSV} />
-  //         </React.Fragment>
-  //     )
-  // }
-
-  //Não usaremos imagem
-  // const imageBodyTemplate = (rowData) => {
-  //     return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-  // }
-
   //Preço
   const valorBodyTemplate = (rowData) => {
     return formatCurrency(rowData.valor);
   }
 
-  //Avaliação
-  // const ratingBodyTemplate = (rowData) => {
-  //     return <Rating value={rowData.rating} readOnly cancel={false} />;
-  // }
-
-  //Status produto
-  // const statusBodyTemplate = (rowData) => {
-  //     return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
-  // }
-
   const actionBodyTemplate = (rowData) => {
     return (
       <React.Fragment>
         <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" onClick={() => editProduto(rowData)} />
-        <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" onClick={() => confirmDeleteProduto(rowData)} />
+        {/* <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" onClick={() => confirmDeleteProduto(rowData)} /> */}
       </React.Fragment>
     );
   }
@@ -404,15 +276,12 @@ const Produto = () => {
   });
 
   return (
-    // <div className={DataTableDemo}>
     <div className="datatable-crud-demo">
 
       <div className="card">
         <Toolbar className="p-mb-4" left={leftToolbarTemplate} ></Toolbar>
-        {/* <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar> */}
-
+  
         <DataTable value={produtos} showGridlines autoLayout stripedRows selection={selectedProdutos} onSelectionChange={(e) => setSelectedProdutos(e.value)}
-          // <DataTable ref={dt} value={produtos} selection={selectedProdutos} onSelectionChange={(e) => setSelectedProdutos(e.value)}
           dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           currentPageReportTemplate="Mostrando de {first} a {last} de um total de {totalRecords} Produtos"
@@ -430,15 +299,11 @@ const Produto = () => {
           <Column field="idFuncionario" header="Funcionário Id" sortable></Column>
           <Column field="nomeFuncionario" header="Funcionario" sortable></Column>
           <Column field="dataFabricacao" header="Data de Fabricação" body={dataTemplate}></Column>
-          {/* <Column header="Image" body={imageBodyTemplate}></Column> */}
-          {/* <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column> */}
-          {/* <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable></Column> */}
           <Column body={actionBodyTemplate}></Column>
         </DataTable>
       </div>
 
-      <Dialog visible={produtoDialog} style={{ width: '450px' }} header="Detalhes da Produto" modal className="p-fluid" footer={produtoDialogFooter} onHide={hideDialog}>
-        {/* {product.image && <img src={`showcase/demo/images/product/${product.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={product.image} className="product-image" />} */}
+      <Dialog visible={produtoDialog} style={{ width: '450px' }} header="Detalhes do Produto" modal className="p-fluid" footer={produtoDialogFooter} onHide={hideDialog}>
         <div className="p-field">
           <label htmlFor="nome">Nome</label>
           <InputText id="nome" value={produto.nome} onChange={(e) => onInputChange(e, 'nome')} required autoFocus className={classNames({ 'p-invalid': submitted && !produto.nome })} />
@@ -453,26 +318,12 @@ const Produto = () => {
           <Calendar id="dataFabricacao" value={produto.dataFabricacao} timezone="utc" onChange={(e) => onInputChangeData(e, 'dataFabricacao')} />
         </div>
 
-
-        {/* Faz parte da Descrição */}
         <div className="p-field">
           <label className="p-mb-3">Categoria</label>
           <div className="p-formgrid p-grid">
             <div className="p-field-radiobutton p-col-6" value={categoria}>
               {mapCategoria}  
             </div>
-            {/* <div className="p-field-radiobutton p-col-6">
-                            <RadioButton inputId="category2" name="categoria" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
-                            <label htmlFor="category2">Clothing</label>
-                        </div>
-                        <div className="p-field-radiobutton p-col-6">
-                            <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={product.category === 'Electronics'} />
-                            <label htmlFor="category3">Electronics</label>
-                        </div>
-                        <div className="p-field-radiobutton p-col-6">
-                            <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={product.category === 'Fitness'} />
-                            <label htmlFor="category4">Fitness</label>
-                        </div> */}
           </div>
         </div>
 
@@ -482,18 +333,6 @@ const Produto = () => {
             <div className="p-field-radiobutton p-col-6" value={funcionario}>
               {mapFuncionario}  
             </div>
-            {/* <div className="p-field-radiobutton p-col-6">
-                            <RadioButton inputId="category2" name="categoria" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
-                            <label htmlFor="category2">Clothing</label>
-                        </div>
-                        <div className="p-field-radiobutton p-col-6">
-                            <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={product.category === 'Electronics'} />
-                            <label htmlFor="category3">Electronics</label>
-                        </div>
-                        <div className="p-field-radiobutton p-col-6">
-                            <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={product.category === 'Fitness'} />
-                            <label htmlFor="category4">Fitness</label>
-                        </div> */}
           </div>
         </div>
 
