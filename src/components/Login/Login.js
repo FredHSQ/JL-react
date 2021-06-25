@@ -13,23 +13,6 @@ var emptyFuncionario = {
   cpf: '',
 };
 
-const botaoLogin = ({className, children}) => (
-  <a className={className} href='Portal'>
-    {children}
-  </a>
-)
-
-const Button = styled(botaoLogin)`
-background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 1vw 2vw;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1vw;
-  border-radius: 1vw;
-`;
 
 const Login = () => {
   
@@ -61,6 +44,24 @@ const Login = () => {
       }
     },[]);
   };
+
+  
+  const botaoLogin = ({className, children}) => (
+    <a className={className} href='Portal' onClick={authToken}>
+      {children}
+    </a>
+  )
+  const Button = styled(botaoLogin)`
+background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 1vw 2vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1vw;
+  border-radius: 1vw;
+`;
   
   const onInputChangeCPF = (e, nome) => {
     const val = (e.target && e.target.value) || '';
@@ -87,7 +88,7 @@ const Login = () => {
 
             <input className="input-user" type="text" placeholder="Nome" onChange={(e) => onInputChangeNome(e, 'nome')}/>
             <input className="input-user" type="text" placeholder="Cpf" onChange={(e) => onInputChangeCPF(e, 'cpf')}/>
-            <Button Link='/Portal' onClick={authToken} >Logar</Button> 
+            <Button>Logar</Button> 
 
         </div>
       </div>
