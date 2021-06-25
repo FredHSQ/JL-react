@@ -1,0 +1,93 @@
+.carrinhoBody {
+    background-color: #e5e5e5;
+    padding: 3%;
+}
+
+.centro {
+    background-color: white;
+    border-radius: 15px;
+}
+
+.carrinhoHeader h1{
+    margin-left: 18px;
+}
+
+.carrinhoInfo {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 2%;
+}
+
+.checkBox {
+    width: 23px;
+    height: 23px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.imgInfo {
+    height: 200px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.infos{
+    margin-left: 20px;
+    width: 62%;
+}
+
+.tituloInfo {
+    font-size: 35px;
+}
+
+.descricaoInfo{
+    font-size: 15px;
+}
+
+.deleteInfo{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: #ff0000;
+    border: none;
+    margin-left: 100px;
+    cursor: pointer;
+}
+
+.deleteInfo:hover{
+    filter: brightness(0.9);
+}
+
+.deleteInfo img{
+    height: 30px;
+    width: 30px;
+}
+
+.carrinhoFooter{
+    display: flex;
+    padding: 1.2%;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.tituloFooter{
+    font-size: 28px;
+}
+
+.total{
+    font-size: 20px;
+    width: 25%;
+    margin-left: 10px;
+}
+
+.finalizarFooter{
+    margin-left: 99vh;
+    border: 0;
+    padding: 1%;
+    background-color: #FED000;
+    cursor: pointer;
+}
+
+.finalizarFooter:hover{
+    filter: brightness(0.9);
+}
