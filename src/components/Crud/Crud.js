@@ -4,6 +4,7 @@ import Cliente from '../Cliente/Cliente';
 import Funcionario from '../Funcionario/Funcionario'
 import Produto from '../Produto/Produto'
 import './Crud.css';
+import styled from 'styled-components';
 
 const { useState } = React;
 
@@ -30,10 +31,38 @@ const tabItems = [
   },
 ];
 
+const deslogar = () => (
+    localStorage.removeItem('TOKEN')
+);
+
+const botaoDeslogar = ({className, children}) => (
+  <a className={className} href="/" onClick={deslogar} >
+    {children}
+  </a>
+)
+
+const Button = styled(botaoDeslogar)`
+background-color: #DC143C;
+  border: none;
+  color: white;
+  text-align: center;
+  height: 7vh;
+  width: 7vw;
+  margin-left:30vw;
+  vertical-align: middle;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
+  border-radius: 0.5vw;
+`;
+
 const Crud = () => {
   const [active, setActive] = useState(1);
   return (
   <div className='Crud'>
+    
     <div className="wrapper">
       <div className="tabs">
         {tabItems.map(({ id, title }) =><TabItemComponent
@@ -43,6 +72,9 @@ const Crud = () => {
            isActive={active === id}
          />
       )}
+      <div className="deslogar">
+        <Button>Deslogar</Button>
+      </div>
       </div>
       <div className="contentC">
         {tabItems.map(({ id, content }) => {
