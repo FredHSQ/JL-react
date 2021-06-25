@@ -10,9 +10,6 @@ const NavBar = () => (
         <Link to="/"><a>Inicio</a></Link>
       </li>
       <li className={styles.navButtons}>
-        <Link to="/Login"><a>Login</a></Link>
-      </li>
-      <li className={styles.navButtons}>
         <Link to="/Portal"><a>Portal Gerencial</a></Link>
       </li>
       <li className={styles.navButtons}>

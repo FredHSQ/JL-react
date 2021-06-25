@@ -5,12 +5,31 @@ import Footer from "../Footer/Footer";
 import LogoFooter from "../../Assets/logo-footer.png";
 import FuncionarioService from "../Funcionario/FuncionarioService";
 import React, { useState, useEffect} from 'react';
+import styled from 'styled-components';
 
 
 var emptyFuncionario = {
   nome: '',
   cpf: '',
 };
+
+const botaoLogin = ({className, children}) => (
+  <a className={className} href='Portal'>
+    {children}
+  </a>
+)
+
+const Button = styled(botaoLogin)`
+background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 1vw 2vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1vw;
+  border-radius: 1vw;
+`;
 
 const Login = () => {
   
@@ -68,9 +87,8 @@ const Login = () => {
 
             <input className="input-user" type="text" placeholder="Nome" onChange={(e) => onInputChangeNome(e, 'nome')}/>
             <input className="input-user" type="text" placeholder="Cpf" onChange={(e) => onInputChangeCPF(e, 'cpf')}/>
-            <a onClick={authToken} href='/Portal' >Logar</a> 
+            <Button Link='/Portal' onClick={authToken} >Logar</Button> 
 
-          <p>É novo por aqui? clique aqui e cadastre-se</p>
         </div>
       </div>
       <Footer />
