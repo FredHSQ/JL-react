@@ -9,13 +9,16 @@ import Login from './components/Login/Login';
 import Carrinho from './components/Carrinho/Carrinho';
 import Portal from './components/Portal/Portal';
 import PrivateRoute from './components/Autorization/PrivateRoute'
+import {CartProvider} from './Contexts/CartContext/index'
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact={true} component={App} />
+      <CartProvider>
+        <Route path="/" exact={true} component={App} />
+        <Route path="/Carrinho" component={Carrinho} />
+      </CartProvider>
       <Route path="/Login" component={Login} />
-      <Route path="/Carrinho" component={Carrinho} />
       <PrivateRoute path="/Portal" component={Portal} />
       <Route path='*' component={Pagina404} />
     </Switch>

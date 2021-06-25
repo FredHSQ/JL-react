@@ -30,11 +30,8 @@ const Login = () => {
     console.log(emptyFuncionario.nome);
     console.log(emptyFuncionario.cpf);
     funcionario.map((func) => {
-      console.log("Entrou map");
       if(emptyFuncionario.nome === func.nome){
-        console.log("Entrou if nome");
         if(emptyFuncionario.cpf === func.cpf){
-          console.log("Entrou if cpf");
           return localStorage.setItem('TOKEN',emptyFuncionario.cpf);
         }else{
           return <h1>Usuário/Senha incorreto.</h1>

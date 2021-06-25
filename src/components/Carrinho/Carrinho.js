@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './Carrinho.css';
 import Header from '../Header/Header';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
+import api from '../../Services/api';
 
-const Carrinho = () => (
-  <>
+import { CartContext } from '../../Contexts/CartContext';
+
+
+
+const Carrinho = () => {
+
+
+
+  const {cart,addItem,removeItem,clearCart} = useContext(CartContext);
+
+
+
+  return (<>
     <Header/>
     <NavBar/>
+    <button onClick={addItem}>
+      Adiciona produto
+    </button>
+    <button onClick={removeItem}>
+      Remove produto
+    </button>
     <div className="carrinhoBody">
       <div className="centro">
         <div className="carrinhoHeader">
@@ -36,6 +54,7 @@ const Carrinho = () => (
     </div>
     <Footer/>
   </>
-);
+  )
+};
 
 export default Carrinho;
