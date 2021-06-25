@@ -8,11 +8,40 @@ import api from "../../Services/api";
 import tag from "../../Assets/tag.png"
 import trash from "../../Assets/trash.png"
 import padrao from "../../Assets/padrao.jpg"
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { CartContext } from "../../Contexts/CartContext";
 
 const Carrinho = () => {
   var valorTotal = 0;
+
+  const botaoFinalizar = ({className, children}) => (
+    <Link className={className} onClick={clearCart} >
+      {children}
+    </Link>
+  )
+  
+  
+
+  const Button = styled(botaoFinalizar)`
+    background-color: #fed000;
+    cursor: pointer;
+    border: none;
+    color: black;
+    text-align: center;
+    height: 7vh;
+    width: 7vw;
+    margin-left: 47vw;
+    vertical-align: middle;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1vw;
+    border-radius: 0.5vw;
+  `;
+  
   const { cart, addItem, removeItem, clearCart } = useContext(CartContext);
   const ProdutoCarrinho = cart.map((produtoC, i) => {
     valorTotal = valorTotal + produtoC.valor;
@@ -69,7 +98,7 @@ const Carrinho = () => {
           <div className="carrinhoFooter">
             <h2 className="tituloFooter">Total:</h2>
             <p className="total">R$ {valorTotal}</p>
-            <button className="finalizarFooter" onClick={clearCart}>Finalizar compra</button>
+            <Button className="finalizarFooter">Finalizar compra</Button>
           </div>
         </div>
       </div>

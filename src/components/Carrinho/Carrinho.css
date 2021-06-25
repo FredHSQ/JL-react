@@ -1,7 +1,6 @@
 .carrinhoBody {
   background-color: #e5e5e5;
   padding: 3%;
-  height: 110vh;
 }
 
 .centro {
@@ -96,13 +95,6 @@
   margin-left: 10px;
 }
 
-.finalizarFooter {
-  margin-left: 47vw;
-  border: 0;
-  padding: 1%;
-  background-color: #fed000;
-  cursor: pointer;
-}
 
 .finalizarFooter:hover {
   filter: brightness(0.9);
