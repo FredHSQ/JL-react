@@ -17,7 +17,7 @@
   }
   
   .tabitem {
-    border-right: 2px solid #fff;
+    border-right: 0.1vw solid #fff;
     cursor: pointer;
     width: 15%;
     text-align: center;
@@ -32,8 +32,8 @@
   
   .tabitem__title {
     color: black;
-    font-size: px;
-    margin: 10px 0;
+    font-size: 2vw;
+    margin: 2vh 0;
   }
   
   .contentC {
