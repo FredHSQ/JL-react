@@ -54,5 +54,28 @@
   margin-bottom: 20px;
 }
 
-button {
+@media screen and (max-width: 700px) {
+
+  .modal-content {
+  
+    height: 400px;
+    width: 80vw;
+   
+
+  }
+
+  .content {
+
+    background: gray;
+    border: 1px solid;
+    height: 500px;
+    padding: 50px 0px;
+  }
+
+  .input-user {
+    width: 60vw;
+  }
+  
 }
+
+

@@ -38,3 +38,36 @@
   .contentC {
     font-size: 22px;
   }
+
+  @media screen and (max-width: 670px) {
+
+    .tabitem__title {
+      color: black;
+      margin: 2vh 0;
+      font-size: smaller;
+      padding: 5px 10px;
+    }
+
+    .tabs {
+      display: flex;
+      bottom: 0;
+      width: fit-content;
+    }
+    
+  }
+
+  @media screen and (max-width: 580px) {
+
+    .tabitem__title {
+      color: black;
+      margin: 2vh 0;
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+    .tabs {
+      display: flex;
+      bottom: 0;
+      width: fit-content;
+    }
+    
+  }

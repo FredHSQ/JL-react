@@ -57,7 +57,6 @@ background-color: #4CAF50;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1vw;
   border-radius: 1vw;
 `;
   

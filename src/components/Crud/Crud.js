@@ -43,19 +43,18 @@ const botaoDeslogar = ({className, children}) => (
 )
 
 const Button = styled(botaoDeslogar)`
-background-color: #DC143C;
+  background-color: #DC143C;
   border: none;
   color: white;
   text-align: center;
   height: 7vh;
-  width: 7vw;
+  width: 70px;
   margin-left:30vw;
   vertical-align: middle;
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1vw;
   border-radius: 0.5vw;
 `;
 
