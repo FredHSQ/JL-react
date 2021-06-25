@@ -17,6 +17,7 @@ import categoriaService from "../Categoria/CategoriaService";
 import ProdutoService from "./ProdutoService";
 import funcionarioService from "../Funcionario/FuncionarioService";
 import { Calendar } from "primereact/calendar";
+import { Dropdown } from 'primereact/dropdown';
 
 const Produto = () => {
   let emptyProduto = {
@@ -337,7 +338,7 @@ const Produto = () => {
           name="categoria"
           value={col}
           onChange={onCategoriaChange}
-          checked={produto.nomeCategoria == col.nome}
+          checked={produto.nomeCategoria === col.nome}
         />
         <label htmlFor={`categoria1${i}`}>{col.nome}</label>
       </div>
@@ -353,18 +354,26 @@ const Produto = () => {
 
   const mapFuncionario = funcionario.map((col, i) => {
     return (
-      <div className="p-field-radiobutton p-col-6">
+      <div className="p-field-radiobutton p-col-6 ">
         <RadioButton
           inputId={`funcionario${i}`}
           name="funcionario"
           value={col}
           onChange={onFuncionarioChange}
-          checked={produto.nomeFuncionario == col.nome}
+          checked={produto.nomeFuncionario === col.nome}
         />
         <label htmlFor={`funcionario1${i}`}>{col.nome}</label>
       </div>
     );
   });
+
+  const monthNavigatorTemplate = (e) => {
+    return <Dropdown value={e.value} options={e.options} onChange={(event) => e.onChange(event.originalEvent, event.value)} style={{ lineHeight: 1 }} />;
+  }
+
+  const yearNavigatorTemplate = (e) => {
+    return <Dropdown value={e.value} options={e.options} onChange={(event) => e.onChange(event.originalEvent, event.value)} className="p-ml-2" style={{ lineHeight: 1 }} />;
+  }
 
   return (
     <div className="datatable-crud-demo">
@@ -463,6 +472,9 @@ const Produto = () => {
             value={produto.dataFabricacao}
             timezone="utc"
             onChange={(e) => onInputChangeData(e, "dataFabricacao")}
+            monthNavigator yearNavigator yearRange="1900:2030"
+            monthNavigatorTemplate={monthNavigatorTemplate}
+            yearNavigatorTemplate={yearNavigatorTemplate}
           />
         </div>
 

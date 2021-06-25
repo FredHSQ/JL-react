@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Footer.module.css';
 import Logo from '../../Assets/liga.svg';
 import styled from 'styled-components';
 
-const imagemFooter = ({className, children}) => (
+const imagemFooter = ({ className, children }) => (
   <img className={className} src={Logo} alt="Logo" id="img-funko">
     {children}
   </img>
@@ -19,8 +18,5 @@ const Footer = () => (
   </footer>
 );
 
-Footer.propTypes = {};
-
-Footer.defaultProps = {};
 
 export default Footer;

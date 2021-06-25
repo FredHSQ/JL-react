@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 
@@ -18,9 +17,5 @@ const NavBar = () => (
     </ul>
   </nav>
 );
-
-NavBar.propTypes = {};
-
-NavBar.defaultProps = {};
 
 export default NavBar;

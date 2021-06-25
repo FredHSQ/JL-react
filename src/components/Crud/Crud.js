@@ -13,30 +13,30 @@ const tabItems = [
   {
     id: 1,
     title: 'Produto',
-    content: <Produto/>,
+    content: <Produto />,
   },
   {
     id: 2,
     title: 'Funcionário',
-    content: <Funcionario/>,
+    content: <Funcionario />,
   },
   {
     id: 3,
     title: 'Categoria',
-    content: <Categoria/>,
+    content: <Categoria />,
   },
   {
     id: 4,
     title: 'Cliente',
-    content: <Cliente/>,
+    content: <Cliente />,
   },
 ];
 
 const deslogar = () => (
-    localStorage.removeItem('TOKEN')
+  localStorage.removeItem('TOKEN')
 );
 
-const botaoDeslogar = ({className, children}) => (
+const botaoDeslogar = ({ className, children }) => (
   <Link className={className} to="/" onClick={deslogar} >
     {children}
   </Link>
@@ -56,33 +56,44 @@ const Button = styled(botaoDeslogar)`
   justify-content: center;
   align-items: center;
   border-radius: 0.5vw;
+
+  @media only screen and (max-width: 640px) {
+    margin-left: 25vw;
+  }
+
+  @media only screen and (max-width: 500px){
+    margin-left: 20vw;
+  }
+  @media only screen and (max-width: 450px){
+    margin-left: 10vw;
+  }
 `;
 
 const Crud = () => {
   const [active, setActive] = useState(1);
   return (
-  <div className='Crud'>
-    
-    <div className="wrapper">
-      <div className="tabs">
-        {tabItems.map(({ id, title }) =><TabItemComponent
-           key={title}
-           title={title}
-           onItemClicked={() => setActive(id) }
-           isActive={active === id}
-         />
-      )}
-      <div className="deslogar">
-        <Button>Deslogar</Button>
+    <div className='Crud'>
+
+      <div className="wrapper">
+        <div className="tabs">
+          {tabItems.map(({ id, title }) => <TabItemComponent
+            key={title}
+            title={title}
+            onItemClicked={() => setActive(id)}
+            isActive={active === id}
+          />
+          )}
+          <div className="deslogar">
+            <Button>Deslogar</Button>
+          </div>
+        </div>
+        <div className="contentC">
+          {tabItems.map(({ id, content }) => {
+            return active === id ? content : ''
+          })}
+        </div>
       </div>
-      </div>
-      <div className="contentC">
-        {tabItems.map(({ id, content }) => {
-          return active === id ? content : ''
-        })}
-      </div>
-     </div>
-  </div>
+    </div>
   )
 }
 

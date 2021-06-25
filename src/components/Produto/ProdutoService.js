@@ -1,5 +1,4 @@
 import api from '../../Services/api'
-import Produto from './Produto';
 
 export default class ProdutoService {
 
@@ -19,20 +18,20 @@ export default class ProdutoService {
     //     return api.post('./categoria', categoria).then(res => res.data)
     // }
 
-    postProdutos(produto){
+    postProdutos(produto) {
         return api.post('/produto', produto).then(res => res.data);
     }
 
     // postCategoriasWithOrderSmalll(){
     //     return api.post('data/products-orders-small.json').then(res => res.data)
     // }
-    
-    deleteProdutos(id){
+
+    deleteProdutos(id) {
         return api.delete(`/produto/${id}`).then(res => res.data)
     }
 
 
-    putProdutos(produto){
+    putProdutos(produto) {
         return api.put(`/produto/${produto.id}`, produto).then(res => res.data)
     }
 }

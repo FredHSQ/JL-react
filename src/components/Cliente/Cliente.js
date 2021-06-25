@@ -9,6 +9,7 @@ import { Toolbar } from 'primereact/toolbar';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
+import { Dropdown } from 'primereact/dropdown';
 
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -23,12 +24,12 @@ const DataTableCrudDemo = () => {
         cpf: '',
         email: '',
         dataNascimento: '',
-        endereco:{
-           rua:'',
-           estado:'',
-            cidade:'',
+        endereco: {
+            rua: '',
+            estado: '',
+            cidade: '',
         },
-        usuario:''
+        usuario: ''
     };
 
     const [clientes, setClientes] = useState(null);
@@ -66,23 +67,23 @@ const DataTableCrudDemo = () => {
     }
 
     const dataTemplate = (rawData) => {
-        return new Date(rawData.dataNascimento).toLocaleDateString([],{year: 'numeric', month: 'numeric',day: 'numeric'});
-      }
-    
+        return new Date(rawData.dataNascimento).toLocaleDateString([], { year: 'numeric', month: 'numeric', day: 'numeric' });
+    }
+
     const cpfTemplate = (rawData) => {
-        return rawData.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/,'$1.$2.$3-$4');
-      }
-    
+        return rawData.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
+    }
+
     const cepTemplate = (rawData) => {
-        return rawData.endereco.cep.replace(/^(\d{5})(\d{3}).*/,'$1-$2');
-      }
+        return rawData.endereco.cep.replace(/^(\d{5})(\d{3}).*/, '$1-$2');
+    }
 
     const saveCliente = async () => {
         setSubmitted(true);
 
         if (cliente.nome.trim()) {
             let _clientes = [...clientes];
-            let _cliente = {...cliente};
+            let _cliente = { ...cliente };
             if (cliente.id) {
                 const index = findIndexById(cliente.id);
 
@@ -106,7 +107,7 @@ const DataTableCrudDemo = () => {
     }
 
     const editCliente = (cliente) => {
-        setCliente({...cliente});
+        setCliente({ ...cliente });
         setClienteDialog(true);
     }
 
@@ -139,15 +140,15 @@ const DataTableCrudDemo = () => {
     const confirmDeleteSelected = () => {
         setDeleteClientesDialog(true);
     }
-    
+
     const deleteSelectedClientes = () => {
         let _clientes = clientes.filter(val => !selectedClientes.includes(val));
         setClientes(_clientes);
         setDeleteClientesDialog(false);
         setSelectedClientes(null);
 
-        for(let i = selectedClientes.length - 1; i>= 0; i--){ 
-            
+        for (let i = selectedClientes.length - 1; i >= 0; i--) {
+
             let obj = selectedClientes[i];
             clienteService.deleteClientes(obj.id);
         }
@@ -157,7 +158,7 @@ const DataTableCrudDemo = () => {
 
     const onInputChange = (e, nome) => {
         const val = (e.target && e.target.value) || '';
-        let _cliente = {...cliente};
+        let _cliente = { ...cliente };
         _cliente[`${nome}`] = val;
 
         setCliente(_cliente);
@@ -167,13 +168,13 @@ const DataTableCrudDemo = () => {
         const val = (e.target && e.target.value) || '';
         let _cliente = { ...cliente };
         _cliente[`${nome}`] = val;
-    
+
         setCliente(_cliente);
-      }
+    }
 
     const onInputAdressChange = (e, nome) => {
         const val = (e.target.value);
-        let _cliente = {...cliente};
+        let _cliente = { ...cliente };
         _cliente.endereco[`${nome}`] = val;
         setCliente(_cliente);
     }
@@ -226,14 +227,22 @@ const DataTableCrudDemo = () => {
         </React.Fragment>
     );
 
+    const monthNavigatorTemplate = (e) => {
+        return <Dropdown value={e.value} options={e.options} onChange={(event) => e.onChange(event.originalEvent, event.value)} style={{ lineHeight: 1 }} />;
+    }
+
+    const yearNavigatorTemplate = (e) => {
+        return <Dropdown value={e.value} options={e.options} onChange={(event) => e.onChange(event.originalEvent, event.value)} className="p-ml-2" style={{ lineHeight: 1 }} />;
+    }
+
     return (
-         <div className="datatable-crud-demo"> 
+        <div className="datatable-crud-demo">
             <Toast ref={toast} />
 
             <div className="card">
                 <Toolbar className="p-mb-4" left={leftToolbarTemplate} ></Toolbar>
 
-                <DataTable value={clientes} showGridlines autoLayout stripedRows selection={selectedClientes}  onSelectionChange={(e) => setSelectedClientes(e.value)}
+                <DataTable value={clientes} showGridlines autoLayout stripedRows selection={selectedClientes} onSelectionChange={(e) => setSelectedClientes(e.value)}
                     dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     currentPageReportTemplate="Mostrando de {first} a {last} de um total de {totalRecords} Clientes"
@@ -275,7 +284,8 @@ const DataTableCrudDemo = () => {
                 </div>
                 <div className="p-field">
                     <label htmlFor="dataNascimento">Data de Nascimento</label>
-                    <Calendar id="dataNascimento" value={cliente.dataNascimento} timezone="utc" onChange={(e) => onInputChangeData(e, 'dataNascimento')} />
+                    <Calendar id="dataNascimento" value={cliente.dataNascimento} timezone="utc" onChange={(e) => onInputChangeData(e, 'dataNascimento')} monthNavigator yearNavigator yearRange="1900:2030"
+                        monthNavigatorTemplate={monthNavigatorTemplate} yearNavigatorTemplate={yearNavigatorTemplate} />
                 </div>
                 <div className="p-field">
                     <label htmlFor="endereco.cep">CEP</label>
@@ -301,17 +311,17 @@ const DataTableCrudDemo = () => {
                     <label htmlFor="endereco.estado">Estado</label>
                     <InputText id="endereco.estado" value={cliente.endereco.estado} onChange={(e) => onInputAdressChange(e, 'estado')} required rows={3} cols={20} />
                 </div>
-                    </Dialog>
-                    <Dialog visible={deleteClienteDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteClienteDialogFooter} onHide={hideDeleteClienteDialog}>
+            </Dialog>
+            <Dialog visible={deleteClienteDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteClienteDialogFooter} onHide={hideDeleteClienteDialog}>
                 <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: '2rem'}} />
+                    <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: '2rem' }} />
                     {cliente && <span>Você está certo que você quer excluir? <b>{cliente.nome}</b>?</span>}
                 </div>
             </Dialog>
 
             <Dialog visible={deleteClientesDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteClientesDialogFooter} onHide={hideDeleteClientesDialog}>
                 <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: '2rem'}} />
+                    <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: '2rem' }} />
                     {cliente && <span>Você está certo que você quer excluir essa cliente?</span>}
                 </div>
             </Dialog>
