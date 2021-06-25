@@ -23,7 +23,7 @@ const ProdutoInicio = () => {
     produtoInicioService.getProdutos().then((data) => setProdutos(data));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const {addItem} = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
 
   const itemTemplate = (data) => {
     return (

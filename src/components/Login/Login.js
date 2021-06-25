@@ -6,6 +6,7 @@ import LogoFooter from "../../Assets/logo-footer.png";
 import FuncionarioService from "../Funcionario/FuncionarioService";
 import React, { useState, useEffect} from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 var emptyFuncionario = {
@@ -44,9 +45,9 @@ const Login = () => {
 
   
   const botaoLogin = ({className, children}) => (
-    <a className={className} href='Portal' onClick={authToken}>
+    <Link className={className} to='/Portal' onClick={authToken}>
       {children}
-    </a>
+    </Link>
   )
   const Button = styled(botaoLogin)`
 background-color: #4CAF50;

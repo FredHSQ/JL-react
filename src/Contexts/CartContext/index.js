@@ -5,10 +5,10 @@ export const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  function addItem(e) {
-    const item = {e} ;
-    console.log(item);
-    setCart([item, ...cart]);
+  function addItem(item) {
+    const aux = cart;
+    aux.push(item);
+    setCart(aux);
     console.log(cart);
   }
 
@@ -20,6 +20,7 @@ export function CartProvider({ children }) {
 
   function clearCart() {
     setCart([]);
+    console.log(cart);
   }
 
   return (

@@ -5,6 +5,7 @@ import Funcionario from '../Funcionario/Funcionario'
 import Produto from '../Produto/Produto'
 import './Crud.css';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const { useState } = React;
 
@@ -36,9 +37,9 @@ const deslogar = () => (
 );
 
 const botaoDeslogar = ({className, children}) => (
-  <a className={className} href="/" onClick={deslogar} >
+  <Link className={className} to="/" onClick={deslogar} >
     {children}
-  </a>
+  </Link>
 )
 
 const Button = styled(botaoDeslogar)`

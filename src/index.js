@@ -17,9 +17,9 @@ ReactDOM.render(
       <CartProvider>
         <Route path="/" exact={true} component={App} />
         <Route path="/Carrinho" component={Carrinho} />
-      </CartProvider>
         <Route path="/Login" component={Login} />
         <PrivateRoute path="/Portal" component={Portal} />
+      </CartProvider>
         <Route path="*" component={Pagina404} />
     </Switch>
   </BrowserRouter>,
