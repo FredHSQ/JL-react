@@ -83,7 +83,7 @@ const Carrinho = () => {
           </div>
         </div>
 
-        <button className="deleteInfo" onClick={() => removeItem(cart[i])}>
+        <button className="deleteInfo" onClick={() => removeItem(produtoC.id)}>
           <img src={trash}></img>
         </button>
         <hr />

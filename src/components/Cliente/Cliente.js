@@ -92,7 +92,6 @@ const DataTableCrudDemo = () => {
                 toast.current.show({ severity: 'Sucesso', summary: 'Com Sucesso', detail: 'Cliente Atualizada', life: 3000 });
             }
             else {
-
                 const response = await clienteService.postClientes(_cliente);
 
                 _clientes.push(response);
